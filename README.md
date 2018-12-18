@@ -1,24 +1,24 @@
-#Kitty Journey
+# Kitty Journey
 
-This code was originially created by Roberto Abreu, ported to glfw by Raydelto Hernandez
+This code was originally created by Roberto Abreu, ported to glfw by Raydelto Hernandez
 
 
-/**************************************************
+**************************************************
  [1]                INTRODUCTION
- **************************************************/
+ **************************************************
 
-    This program concludes my class Computer Graphics 2008 at 
+    This program concludes Roberto Abreu's class Computer Graphics 2008 at 
     the Vrije Universiteit. It was written in C/C++ and it was
-    developed and COMPILED using Microsoft Visual C++ 2008. 
+    developed and built using Microsoft Visual C++ 2008. 
     
     ***IMPORTANT***: The project contains C++ code. To compile in 
     Microsoft Visual C++, make sure in the project properties,
     "C/C++", The Advanced menu has as "Copile As" the value
     "Compile as C++ Code". 
 
-/**************************************************
+**************************************************
  [2]           THE GAME AND CONTROLS 
- **************************************************/    
+ **************************************************
    CONTROLS:
       
       Q           - Quit the game
@@ -42,22 +42,27 @@ This code was originially created by Roberto Abreu, ported to glfw by Raydelto H
     might scare you as they will change their eyes', teeth and whiskers'
     color to red, turning them into "Vampires."
 
-/**************************************************
+**************************************************
  [3]                   EXTRAS
- **************************************************/
+ **************************************************
 
-* I am using Scene Graphs (See Node, Geometry, GraphicalObject, PlayerCamera, TexturedCube,
+* We are using Scene Graphs (See Node, Geometry, GraphicalObject, PlayerCamera, TexturedCube,
   TexturedRectangle, Transformation).
-* I am using display lists to display all the 3D objects and I am using Texture named list
+* We are using display lists to display all the 3D objects and I am using Texture named list
   for the objects that use textures.
-* I have added two extra animated cats and each has its own trajectory.
-* I have an extra light source.
-* I am using fog. 
-* I am using collision detection.
-* I am using advanced interaction:
+* We have added two extra animated cats and each has its own trajectory.
+* We have an extra light source.
+* We are using fog. 
+* We are using collision detection.
+* We are using advanced interaction:
    - There is one Player Cat that is controlled by the user.
    - The camera "follows" that player cat AS he moves in any direction.
-* I added "Night" and "Day", every 24 seconds ( 1 second = 1 real world hour)), the
+* We added "Night" and "Day", every 24 seconds ( 1 second = 1 real world hour)), the
   world goes from night to day. When it is night, the eyes, teeth and whiskers of 
   the cats switch to scary red. 
+  
+  You can contact us at:
+  
+* rcabreu [at] gmail.com
+* raydelto [at] yahoo.com
   

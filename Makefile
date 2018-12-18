@@ -14,7 +14,6 @@ OBJ=bin/glad.o
 endif
 
 SRC += util/glutil.c \
-	   util/modelloader.c \
 	   src/CollisionDetector.cpp \
 	   src/Geometry.cpp \
 	   src/Material.cpp \
@@ -28,7 +27,6 @@ SRC += util/glutil.c \
 
 
 OBJ += 	bin/glutil.o \
-		bin/modelloader.o \
 		bin/CollisionDetector.o \
 		bin/Geometry.o \
 		bin/Material.o \

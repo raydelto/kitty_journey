@@ -15,8 +15,8 @@ PlayerCamera::~PlayerCamera(void)
 
 void PlayerCamera::Render()
 {
-	gluLookAt(position[0], position[1], position[2], // configure view
-	 lookAt[0], lookAt[1], lookAt[2], 0.0, 1.0, 0.0);
+	// gluLookAt(position[0], position[1], position[2], // configure view
+	//  lookAt[0], lookAt[1], lookAt[2], 0.0, 1.0, 0.0);
 	Node::Render(); // render children
 }
 

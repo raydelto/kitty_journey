@@ -13,13 +13,28 @@ SRC=third-party-source-code/glad.c
 OBJ=bin/glad.o
 endif
 
-SRC += src/Tga.cpp \
-	   src/Md2.cpp \
-	   src/main.cpp
+SRC += src/CollisionDetector.cpp \
+	   src/Geometry.cpp \
+	   src/Material.cpp \
+	   src/ModelLoader.cpp \
+	   src/Node.cpp \
+	   src/PlayerCamera.cpp \
+	   src/Polygon.cpp \
+	   src/TexturedCube.cpp \
+	   src/TexturedRectangle.cpp \
+	   src/Transformation.cpp \
+	   src/main.cpp \
 
 
-OBJ += 	bin/Tga.o \
-		bin/Md2.o \
+OBJ += 	bin/CollisionDetector.o \
+		bin/Geometry.o \
+		bin/Material.o \
+		bin/ModelLoader.o \
+		bin/Node.o \
+		bin/PlayerCamera.o \
+		bin/TexturedCube.o \
+		bin/TexturedRectangle.o \
+		bin/Transformation.o \
 		bin/main.o
 
 WARNINGS=-w

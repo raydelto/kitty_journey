@@ -1,6 +1,6 @@
 #pragma once
 #include "geometry.h"
-#include <util/glutil.h>
+#include <../util/glutil.h>
 
 
 /** TexturedRectangle - Scene Graphs object to serve as a "floor" or "ground"

@@ -1,2 +1,4 @@
-.DS_Store
+**.o
+bin
 Debug
+.DS_Store

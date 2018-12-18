@@ -201,8 +201,9 @@ void GraphicalObject::LoadTexture(char* texturePath)
 	glBindTexture(GL_TEXTURE_2D, texture);
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 
-	gluBuild2DMipmaps( GL_TEXTURE_2D, textureImg->components, textureImg->sizeX, textureImg->sizeY,
-                       GL_RGB, GL_UNSIGNED_BYTE, textureImg->data);
+	// gluBuild2DMipmaps( GL_TEXTURE_2D, textureImg->components, textureImg->sizeX, textureImg->sizeY,
+    //                    GL_RGB, GL_UNSIGNED_BYTE, textureImg->data);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureImg->sizeX, textureImg->sizeY, 0, GL_RGB, GL_UNSIGNED_BYTE, textureImg->data);
 	glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
     glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);

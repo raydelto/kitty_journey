@@ -1,25 +1,117 @@
-#define GLUT_BUILDING_LIB
-
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 #include "project.h"
 
-int main(int argc, char **argv)
-{
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-	glutInitWindowSize(800, 600);  
-	glutInitWindowPosition(0, 0);
-    glutCreateWindow("Final Project");
-	
-	glutIdleFunc(idle);
-	glutDisplayFunc(display);
-	glutReshapeFunc(reshape);
-	glutKeyboardFunc(keyBoard);
-	glutSpecialFunc(catMove);
+const char* APP_TITLE = "Kitty Journey";
+GLFWwindow *window;
 
-	init();
-	glutMainLoop();
+// settings
+const unsigned int SCR_WIDTH = 800;
+const unsigned int SCR_HEIGHT = 600;
+
+// Function prototypes
+void glfw_onKey(GLFWwindow* window, int key, int scancode, int action, int mode);
+void framebuffer_size_callback(GLFWwindow *window, int width, int height);
+
+
+// glfw: whenever the window size changed (by OS or user resize) this callback function executes
+// ---------------------------------------------------------------------------------------------
+void framebuffer_size_callback(GLFWwindow *window, int width, int height)
+{
+    // make sure the viewport matches the new window dimensions; note that width and
+    // height will be significantly larger than specified on retina displays.
+    glViewport(0, 0, width, height);
 }
 
+//-----------------------------------------------------------------------------
+// Is called whenever a key is pressed/released via GLFW
+//-----------------------------------------------------------------------------
+void glfw_onKey(GLFWwindow* window, int key, int scancode, int action, int mode)
+{
+	switch(action)
+	{
+	case GLFW_PRESS:
+		// switch(key)
+		// {
+		// 	case GLFW_KEY_UP:
+		// 		jumping = true;
+		// 	break;
+		// 	case GLFW_KEY_DOWN:
+		// 		crowching = true;
+		// 	break;
+		// 	case GLFW_KEY_RIGHT:
+		// 		xIncrement = 0.5;
+		// 	break;
+		// 	case GLFW_KEY_LEFT:
+		// 		xIncrement = -0.5;
+		// 	break;
+		// 	case GLFW_KEY_H:
+		// 		zoom = 1;
+		// 	break;
+		// 	case GLFW_KEY_G:
+		// 		zoom = -1;
+		// 	break;
+		// 	case GLFW_KEY_J:
+		// 		zoom = 0;
+		// 	break;
+
+		// }
+	break;
+
+	case GLFW_RELEASE:
+		// xIncrement = 0.0;
+		// switch(key)
+		// {
+		// 	case GLFW_KEY_DOWN:
+		// 		crowching = false;
+		// 	break;
+		// }
+
+	break;
+	}
+}
+
+bool initGlfw()
+{
+    // glfw: initialize and configure
+    // ------------------------------
+    glfwInit();
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_ANY_PROFILE);
+
+    // glfw window creation
+    // --------------------
+    window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, APP_TITLE, NULL, NULL);
+    if (window == NULL)
+    {
+        std::cout << "Failed to create GLFW window" << std::endl;
+        glfwTerminate();
+        return false;
+    }
+    glfwMakeContextCurrent(window);
+	// Set the required callback functions
+	glfwSetKeyCallback(window, glfw_onKey);	
+    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
+    // glad: load all OpenGL function pointers
+    // ---------------------------------------
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+    {
+        std::cout << "Failed to initialize GLAD" << std::endl;
+        return false;
+    }
+
+	return true;
+}
+
+// process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
+// ---------------------------------------------------------------------------------------------------------
+void processInput(GLFWwindow *window)
+{
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, true);
+}
 
 void init()
 {
@@ -448,14 +540,13 @@ void moveEnemyCats()
 	}
 	delete playerBox;
 }
-void display(void)
+void draw(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 	glClearColor(dayColor[0], dayColor[1], dayColor[2], 1.0);
 	camera->Render();
 	glPopMatrix();
-	glutSwapBuffers();
 }
 
 void reshape(int width, int height)
@@ -552,6 +643,44 @@ void idle(void)
 	glutPostRedisplay();
 }
 
+int main(int argc, char **argv)
+{
+	// glutInit(&argc, argv);
+	// glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+	// glutInitWindowSize(800, 600);  
+	// glutInitWindowPosition(0, 0);
+    // glutCreateWindow("Final Project");
 
+	if (!initGlfw())
+	{
+		printf("Unable to initialize GLFW\n");
+		return 1;
+	}	
+	
+	// glutIdleFunc(idle);
+	// glutDisplayFunc(display);
+	// glutReshapeFunc(reshape);
+	// glutKeyboardFunc(keyBoard);
+	// glutSpecialFunc(catMove);
 
+	init();
+	// glutMainLoop();
 
+	bool init = false;
+	while (!glfwWindowShouldClose(window))
+	{
+		processInput(window);
+		draw();
+        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
+        // -------------------------------------------------------------------------------
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+		if(!init)
+		{
+			int x,y;
+			glfwGetWindowPos(window,&x,&y);
+			glfwSetWindowPos(window, x+1,y);
+			init = true;
+		}
+	}	
+}

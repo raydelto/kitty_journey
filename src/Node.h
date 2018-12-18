@@ -1,7 +1,9 @@
 #pragma once
 #include <iostream>
 #include <list>
-#include <GL/glut.h>
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
 
 /** Main Scene Graph class. From this class all other Scene-Graph-related 
  * classes inherit. 

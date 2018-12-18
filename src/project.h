@@ -1,6 +1,8 @@
-#include <GL/glut.h>
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
 #include <stdio.h>
-#include <util/glutil.h>
+#include <../util/glutil.h>
 #include <cstdlib>
 #include <cmath>
 #include "ModelLoader.h"
@@ -16,27 +18,27 @@
 /**************************************************
     RELATIVE PATHS TO THE DIFFERENT BODY PARTS
  **************************************************/
-char* BODY_PATH = "../models/cat/body.sgf";
-char* RIGHT_LEG_PATH = "../models/cat/leg_right.sgf";
-char* LEFT_LEG_PATH = "../models/cat/leg_left.sgf";
-char* RIGHT_HAND_PATH = "../models/cat/hand_right.sgf";
-char* LEFT_HAND_PATH = "../models/cat/hand_left.sgf";
-char* TAIL_PATH = "../models/cat/tail.sgf";
-char* TEETH_PATH = "../models/cat/teeth.sgf";
-char* WHISKERS_PATH = "../models/cat/whiskers.sgf";
-char* RIGHT_EYE_PATH = "../models/cat/eye_right.sgf";
-char* LEFT_EYE_PATH = "../models/cat/eye_left.sgf";
-char* NOSE_PATH = "../models/cat/nose.sgf";
-char* GROUND_PATH = "../textures/brick.rgb";
-char* BOXES_PATH = "../textures/rock.rgb";
+char* BODY_PATH = "./models/cat/body.sgf";
+char* RIGHT_LEG_PATH = "./models/cat/leg_right.sgf";
+char* LEFT_LEG_PATH = "./models/cat/leg_left.sgf";
+char* RIGHT_HAND_PATH = "./models/cat/hand_right.sgf";
+char* LEFT_HAND_PATH = "./models/cat/hand_left.sgf";
+char* TAIL_PATH = "./models/cat/tail.sgf";
+char* TEETH_PATH = "./models/cat/teeth.sgf";
+char* WHISKERS_PATH = "./models/cat/whiskers.sgf";
+char* RIGHT_EYE_PATH = "./models/cat/eye_right.sgf";
+char* LEFT_EYE_PATH = "./models/cat/eye_left.sgf";
+char* NOSE_PATH = "./models/cat/nose.sgf";
+char* GROUND_PATH = "./textures/brick.rgb";
+char* BOXES_PATH = "./textures/rock.rgb";
 
 /**************************************************
     RELATIVE PATHS TO THE TEXTURES OF THE CATS
  **************************************************/
-char* PLAYER_BODY_TEXTURE_PATH = "../textures/ground.rgb";
-char* PLAYER_HANDLEGTAIL_TEXTURE_PATH = "../textures/rock.rgb";
-char* ENEMY_BODY_TEXTURE_PATH = "../textures/rock.rgb";
-char* ENEMY_HANDLEGTAIL_TEXTURE_PATH = "../textures/ground.rgb";
+char* PLAYER_BODY_TEXTURE_PATH = "./textures/ground.rgb";
+char* PLAYER_HANDLEGTAIL_TEXTURE_PATH = "./textures/rock.rgb";
+char* ENEMY_BODY_TEXTURE_PATH = "./textures/rock.rgb";
+char* ENEMY_HANDLEGTAIL_TEXTURE_PATH = "./textures/ground.rgb";
 
 
 /**************************************************

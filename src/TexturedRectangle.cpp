@@ -18,8 +18,11 @@ void TexturedRectangle::SetTexture(char *texturePath)
 	RGBImage* textureImg = 0;
 	
 	textureImg = LoadRGB(texturePath);
-	gluBuild2DMipmaps( GL_TEXTURE_2D, textureImg->components, textureImg->sizeX, textureImg->sizeY,
-                       GL_RGB, GL_UNSIGNED_BYTE, textureImg->data);
+	// gluBuild2DMipmaps( GL_TEXTURE_2D, textureImg->components, textureImg->sizeX, textureImg->sizeY,
+    //                    GL_RGB, GL_UNSIGNED_BYTE, textureImg->data);
+
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureImg->sizeX, textureImg->sizeY, 0, GL_RGB, GL_UNSIGNED_BYTE, textureImg->data);
+
 	glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
     glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);

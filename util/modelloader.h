@@ -1,13 +1,4 @@
-/* #############################################
-   C module for loading SFG-formatted 3D models.
-   @author Roberto Abreu
-   #############################################
-
-   PLEASE READ README-EXERCISE2.txt
-   */
-#ifndef MODEL_LOADER_RABREU
-#define MODEL_LOADER_RABREU
-
+#pragma once
 /** The shape structure. Inside a SGF file, one or more "shape-sets" are found,
     for example N triangles and M points. The ShapeSet represents each of these
 	sets of shapes.
@@ -62,4 +53,3 @@ int primitiveStrToInt(char* primitiveStr);
 
 void make2DFloatMatrix(float*** ptr, int rows, int cols);
 
-#endif

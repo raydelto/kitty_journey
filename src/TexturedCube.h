@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <list>
-#include <../util/glutil.h>
+#include "../util/glutil.h"
 #include "geometry.h"
 
 using namespace std;

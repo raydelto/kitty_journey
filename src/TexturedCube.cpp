@@ -16,6 +16,7 @@ TexturedCube::TexturedCube(char* texturePath)
 	// gluBuild2DMipmaps( GL_TEXTURE_2D, textureImg->components, textureImg->sizeX, textureImg->sizeY,
     //                    GL_RGB, GL_UNSIGNED_BYTE, textureImg->data);
 
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureImg->sizeX, textureImg->sizeY, 0, GL_RGB, GL_UNSIGNED_BYTE, textureImg->data);
 
 	free(textureImg->data);
 	

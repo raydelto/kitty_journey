@@ -4,9 +4,11 @@
    @author Roberto Abreu
    #############################################
    */
-#include <malloc.h>
 #include <string.h>
-#include <GL/glut.h>
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+#include <cstdlib>
+
 #include "modelloader.h"
 
 ShapeSet* newShapeSet(unsigned int primitiveType, int count)

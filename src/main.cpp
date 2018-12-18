@@ -12,6 +12,7 @@ const unsigned int SCR_HEIGHT = 600;
 // Function prototypes
 void glfw_onKey(GLFWwindow* window, int key, int scancode, int action, int mode);
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
+void perspectiveGL( GLdouble fovY, GLdouble aspect, GLdouble zNear, GLdouble zFar );
 
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
@@ -119,7 +120,7 @@ void init()
 	glEnable(GL_DEPTH_TEST); 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluPerspective(45.0, 800.0 / 600.0, 1.0, 40.0); 
+	perspectiveGL(45.0, 800.0 / 600.0, 1.0, 40.0);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	glEnable(GL_NORMALIZE);	
@@ -395,26 +396,26 @@ void catMove(int key, int x, int y)
 	for (int i = 0; i < 3; i++) newPosition[i] = position[i];
 	
 	/** calculate potential position and angles */
-	if (key == GLUT_KEY_UP)
-	{
-		newPosition[0] += -0.10 * sin(rotation[0] * PI / 180.0);
-		newPosition[2] += -0.10 * cos(rotation[0] * PI / 180.0);
-	}
-	else if (key == GLUT_KEY_DOWN)
-	{
-		newPosition[0] += 0.10 * sin(rotation[0] * PI / 180.0);
-		newPosition[2] += 0.10 * cos(rotation[0] * PI / 180.0);
-	}
-	else if (key == GLUT_KEY_RIGHT)
-	{
-		rotation[0] -= 5.0;
-		camera->UpdatePlayerAngle(rotation[0]);
-	}
-	else if (key == GLUT_KEY_LEFT)
-	{
-		rotation[0] += 5.0;
-		camera->UpdatePlayerAngle(rotation[0]);
-	}
+	// if (key == GLUT_KEY_UP)
+	// {
+	// 	newPosition[0] += -0.10 * sin(rotation[0] * PI / 180.0);
+	// 	newPosition[2] += -0.10 * cos(rotation[0] * PI / 180.0);
+	// }
+	// else if (key == GLUT_KEY_DOWN)
+	// {
+	// 	newPosition[0] += 0.10 * sin(rotation[0] * PI / 180.0);
+	// 	newPosition[2] += 0.10 * cos(rotation[0] * PI / 180.0);
+	// }
+	// else if (key == GLUT_KEY_RIGHT)
+	// {
+	// 	rotation[0] -= 5.0;
+	// 	camera->UpdatePlayerAngle(rotation[0]);
+	// }
+	// else if (key == GLUT_KEY_LEFT)
+	// {
+	// 	rotation[0] += 5.0;
+	// 	camera->UpdatePlayerAngle(rotation[0]);
+	// }
 
 	/* See whether or not the new calculated position is clear from other
 	   objects. That is, first it must not collide with the buildings,
@@ -640,7 +641,20 @@ void idle(void)
 	    animateCats();
 	    moveEnemyCats();
 	}
-	glutPostRedisplay();
+	// glutPostRedisplay();
+}
+
+
+void perspectiveGL( GLdouble fovY, GLdouble aspect, GLdouble zNear, GLdouble zFar )
+{
+    const GLdouble pi = 3.1415926535897932384626433832795;
+    GLdouble fW, fH;
+
+    //fH = tan( (fovY / 2) / 180 * pi ) * zNear;
+    fH = tan( fovY / 360 * pi ) * zNear;
+    fW = fH * aspect;
+
+    glFrustum( -fW, fW, -fH, fH, zNear, zFar );
 }
 
 int main(int argc, char **argv)

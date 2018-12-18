@@ -1,8 +1,9 @@
+#pragma once
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 #include <stdio.h>
-#include <../util/glutil.h>
+#include "../util/glutil.h"
 #include <cstdlib>
 #include <cmath>
 #include "ModelLoader.h"

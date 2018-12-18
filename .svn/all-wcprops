@@ -1,0 +1,173 @@
+K 25
+svn:wc:ra_dav:version-url
+V 30
+/svn/!svn/ver/10/trunk/project
+END
+TexturedRectangle.h
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/9/trunk/project/TexturedRectangle.h
+END
+Material.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/9/trunk/project/Material.cpp
+END
+Geometry.h
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/!svn/ver/9/trunk/project/Geometry.h
+END
+TexturedCube.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/9/trunk/project/TexturedCube.cpp
+END
+Material.h
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/!svn/ver/9/trunk/project/Material.h
+END
+PlayerCamera.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/9/trunk/project/PlayerCamera.cpp
+END
+Transformation.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/9/trunk/project/Transformation.cpp
+END
+project.plg
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/2/trunk/project/project.plg
+END
+TexturedCube.h
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/9/trunk/project/TexturedCube.h
+END
+PlayerCamera.h
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/9/trunk/project/PlayerCamera.h
+END
+project.dsp
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/2/trunk/project/project.dsp
+END
+project.h
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/9/trunk/project/project.h
+END
+Transformation.h
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/9/trunk/project/Transformation.h
+END
+main.c
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/svn/!svn/ver/9/trunk/project/main.c
+END
+project.vcproj.ROBERTO.Robertoz.user
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2/trunk/project/project.vcproj.ROBERTO.Robertoz.user
+END
+CollisionDetector.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/9/trunk/project/CollisionDetector.cpp
+END
+Node.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/!svn/ver/9/trunk/project/Node.cpp
+END
+Polygon.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/2/trunk/project/Polygon.cpp
+END
+ModelLoader.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/9/trunk/project/ModelLoader.cpp
+END
+project.vcproj
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/9/trunk/project/project.vcproj
+END
+project.vcproj.7.10.old
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/2/trunk/project/project.vcproj.7.10.old
+END
+TexturedRectangle.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/9/trunk/project/TexturedRectangle.cpp
+END
+Node.h
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/svn/!svn/ver/9/trunk/project/Node.h
+END
+README.txt
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/10/trunk/project/README.txt
+END
+CollisionDetector.h
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/9/trunk/project/CollisionDetector.h
+END
+Geometry.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/2/trunk/project/Geometry.cpp
+END
+Polygon.h
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/2/trunk/project/Polygon.h
+END
+ModelLoader.h
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/9/trunk/project/ModelLoader.h
+END

@@ -67,12 +67,12 @@ void Transformation::Render()
 	 * it was saved */
 	for(std::list<float*>::iterator i = transformations->begin(); i != transformations->end(); i++) 
 	{
-		if (*orderIterator == SCALE)
-			glScalef((*i)[0], (*i)[1], (*i)[2]);
-		else if (*orderIterator == ROTATION)
+		// if (*orderIterator == SCALE)
+		// 	glScalef((*i)[0], (*i)[1], (*i)[2]);
+		if (*orderIterator == ROTATION)
 			glRotatef((*i)[0], (*i)[1], (*i)[2], (*i)[3]);
-		else if (*orderIterator == TRANSLATION)
-			glTranslatef((*i)[0], (*i)[1],(*i)[2]);
+		// else if (*orderIterator == TRANSLATION)
+		// 	glTranslatef((*i)[0], (*i)[1],(*i)[2]);
 		orderIterator++;
 	}
 	Node::Render();

@@ -43,7 +43,7 @@ WARNINGS=-w
 FLAGS=-std=c++11
 
 all:
-	g++ -c $(SRC) $(INCLUDES) $(WARNINGS) $(FLAGS)
+	g++ -g -c $(SRC) $(INCLUDES) $(WARNINGS) $(FLAGS)
 	ls bin>/dev/null||mkdir bin
 	mv *.o ./bin
-	g++ $(OBJ) $(FRAMEWORKS) $(LIBS) $(INCLUDES) -o bin/main $(WARNINGS) $(FLAGS)
+	g++ -g $(OBJ) $(FRAMEWORKS) $(LIBS) $(INCLUDES) -o bin/main $(WARNINGS) $(FLAGS)

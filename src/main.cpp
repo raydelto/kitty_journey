@@ -4,10 +4,11 @@
 
 const char* APP_TITLE = "Kitty Journey";
 GLFWwindow *window;
+enum my_key { UP, DOWN, RIGHT, LEFT };
 
 // settings
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
+const unsigned int SCR_WIDTH = 1024;
+const unsigned int SCR_HEIGHT = 768;
 
 // Function prototypes
 void glfw_onKey(GLFWwindow* window, int key, int scancode, int action, int mode);
@@ -19,9 +20,32 @@ void perspectiveGL( GLdouble fovY, GLdouble aspect, GLdouble zNear, GLdouble zFa
 // ---------------------------------------------------------------------------------------------
 void framebuffer_size_callback(GLFWwindow *window, int width, int height)
 {
+
+
+	float worldAspect = SCR_WIDTH / SCR_HEIGHT;
+	float windowAspect = width / height;
+    int newWidth = 0.0;
+	int newHeight = 0.0;
+	if (worldAspect == windowAspect) // same width and height
+	{
+		newWidth = width;  
+		newHeight = height;
+	}
+	else if (windowAspect < worldAspect) // horizontal viewing rectangle
+	{
+		newWidth = height * worldAspect;
+		newHeight = height;
+	}
+	else     // vertical viewing rectangle
+	{
+		newWidth = width;
+		newHeight = width / worldAspect;
+	}
+
+	glViewport(0, 0, newWidth, newHeight);	
     // make sure the viewport matches the new window dimensions; note that width and
     // height will be significantly larger than specified on retina displays.
-    glViewport(0, 0, width, height);
+    // glViewport(0, 0, width, height);
 }
 
 //-----------------------------------------------------------------------------
@@ -29,47 +53,72 @@ void framebuffer_size_callback(GLFWwindow *window, int width, int height)
 //-----------------------------------------------------------------------------
 void glfw_onKey(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
+
+	
+		// if (key == GLUT_KEY_UP)
+	// {
+	// 	newPosition[0] += -0.10 * sin(rotation[0] * PI / 180.0);
+	// 	newPosition[2] += -0.10 * cos(rotation[0] * PI / 180.0);
+	// }
+	// else if (key == GLUT_KEY_DOWN)
+	// {
+	// 	newPosition[0] += 0.10 * sin(rotation[0] * PI / 180.0);
+	// 	newPosition[2] += 0.10 * cos(rotation[0] * PI / 180.0);
+	// }
+	// else if (key == GLUT_KEY_RIGHT)
+	// {
+	// 	rotation[0] -= 5.0;
+	// 	camera->UpdatePlayerAngle(rotation[0]);
+	// }
+	// else if (key == GLUT_KEY_LEFT)
+	// {
+	// 	rotation[0] += 5.0;
+	// 	camera->UpdatePlayerAngle(rotation[0]);
+	// }
+	int myKey = -1;
 	switch(action)
 	{
 	case GLFW_PRESS:
-		// switch(key)
-		// {
-		// 	case GLFW_KEY_UP:
-		// 		jumping = true;
-		// 	break;
-		// 	case GLFW_KEY_DOWN:
-		// 		crowching = true;
-		// 	break;
-		// 	case GLFW_KEY_RIGHT:
-		// 		xIncrement = 0.5;
-		// 	break;
-		// 	case GLFW_KEY_LEFT:
-		// 		xIncrement = -0.5;
-		// 	break;
-		// 	case GLFW_KEY_H:
-		// 		zoom = 1;
-		// 	break;
-		// 	case GLFW_KEY_G:
-		// 		zoom = -1;
-		// 	break;
-		// 	case GLFW_KEY_J:
-		// 		zoom = 0;
-		// 	break;
+		switch(key)
+		{
+			case GLFW_KEY_UP:
+				cout << "UP" << endl;
+				myKey = UP;
+				break;
+			case GLFW_KEY_DOWN:
+				myKey = DOWN;
+			break;
+			case GLFW_KEY_RIGHT:
+				myKey = RIGHT;
+			break;
+			case GLFW_KEY_LEFT:
+				myKey = LEFT;
+			break;
+			// case GLFW_KEY_H:
+			// 	zoom = 1;
+			// break;
+			// case GLFW_KEY_G:
+			// 	zoom = -1;
+			// break;
+			// case GLFW_KEY_J:
+			// 	zoom = 0;
+			// break;
 
-		// }
+		}
 	break;
 
-	case GLFW_RELEASE:
-		// xIncrement = 0.0;
-		// switch(key)
-		// {
-		// 	case GLFW_KEY_DOWN:
-		// 		crowching = false;
-		// 	break;
-		// }
+	// case GLFW_RELEASE:
+	// 	// xIncrement = 0.0;
+	// 	// switch(key)
+	// 	// {
+	// 	// 	case GLFW_KEY_DOWN:
+	// 	// 		crowching = false;
+	// 	// 	break;
+	// 	// }
 
-	break;
+	// break;
 	}
+	catMove(myKey,0,0);
 }
 
 bool initGlfw()
@@ -120,39 +169,51 @@ void init()
 	glEnable(GL_DEPTH_TEST); 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	perspectiveGL(45.0, 800.0 / 600.0, 1.0, 40.0);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	glEnable(GL_NORMALIZE);	
+	perspectiveGL(45.0, SCR_WIDTH / SCR_HEIGHT, -4000000.0, 1.0);
+	// glMatrixMode(GL_MODELVIEW);
+	// glLoadIdentity();
+	// glEnable(GL_NORMALIZE);	
 
-	/** enable and configure the first light source */
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
-	glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
-	glLightfv(GL_LIGHT0, GL_AMBIENT, lightAmb);
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, lightDiffu);
-	glLightfv(GL_LIGHT0, GL_SPECULAR, lightSpec);
+	// glMatrixMode(GL_MODELVIEW);
+	// glLoadIdentity();
+	// perspectiveGL(45.0, 0.1f, -40.00, 40.0);
+	// glShadeModel(GL_SMOOTH);
+	// glLoadIdentity();
+	// glEnable(GL_NORMALIZE);	
+	// glEnable(GL_LIGHTING);	
 
-	/** enable and configure the second light source */
-	glEnable(GL_LIGHT1);
-	glLightfv(GL_LIGHT1, GL_POSITION, lightPos1);
-	glLightfv(GL_LIGHT1, GL_AMBIENT, lightAmb1);
-	glLightfv(GL_LIGHT1, GL_DIFFUSE, lightDiffu1);
-	glLightfv(GL_LIGHT1, GL_SPECULAR, lightSpec);
 
-	/** enable and configure fog*/
-	glFogi(GL_FOG_MODE, GL_EXP2);
-	GLfloat fogColor[4] = {0.5f, 0.5f, 0.5f, 1.0f};
-	glFogfv(GL_FOG_COLOR, fogColor);
-	glFogf(GL_FOG_DENSITY, 0.05f);
-	glHint(GL_FOG_HINT, GL_DONT_CARE);
-	glFogf(GL_FOG_START, 1.0f);
-	glFogf(GL_FOG_END, 5.0f);
-	glEnable(GL_FOG);
+	// glEnable(GL_NORMALIZE);	
+
+
+	// /** enable and configure the first light source */
+	// glEnable(GL_LIGHTING);
+	// glEnable(GL_LIGHT0);
+	// glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
+	// glLightfv(GL_LIGHT0, GL_AMBIENT, lightAmb);
+	// glLightfv(GL_LIGHT0, GL_DIFFUSE, lightDiffu);
+	// glLightfv(GL_LIGHT0, GL_SPECULAR, lightSpec);
+
+	// /** enable and configure the second light source */
+	// glEnable(GL_LIGHT1);
+	// glLightfv(GL_LIGHT1, GL_POSITION, lightPos1);
+	// glLightfv(GL_LIGHT1, GL_AMBIENT, lightAmb1);
+	// glLightfv(GL_LIGHT1, GL_DIFFUSE, lightDiffu1);
+	// glLightfv(GL_LIGHT1, GL_SPECULAR, lightSpec);
+
+	// // /** enable and configure fog*/
+	// // glFogi(GL_FOG_MODE, GL_EXP2);
+	// // GLfloat fogColor[4] = {0.5f, 0.5f, 0.5f, 1.0f};
+	// // glFogfv(GL_FOG_COLOR, fogColor);
+	// // glFogf(GL_FOG_DENSITY, 0.05f);
+	// // glHint(GL_FOG_HINT, GL_DONT_CARE);
+	// // glFogf(GL_FOG_START, 1.0f);
+	// // glFogf(GL_FOG_END, 5.0f);
+	// // glEnable(GL_FOG);
 	
-	/** use smooth shading */ 
-	glEnable(GL_SMOOTH);
-	glShadeModel(GL_SMOOTH);
+	// /** use smooth shading */ 
+	// // glEnable(GL_SMOOTH);
+	// // glShadeModel(GL_SMOOTH);
 
 	setupWorldObjects();
 }
@@ -334,7 +395,7 @@ void setupWorldObjects()
 	/* get all the cats on a staring up position and pointing to
 	   a certain direction */
 	catsTransformations[0] = new Transformation();
-	catsTransformations[0]->SetTranslation(0.0, 0.5, 18.0);
+	catsTransformations[0]->SetTranslation(20.0, 0.5, 18.0);
 	catsTransformations[0]->SetRotation(270.0, 1.0, 0.0, 0.0);
 	catsTransformations[0]->SetRotation(0.0, 0.0, 0.0, 1.0);
 	ground->AddChild(catsTransformations[0]);
@@ -396,26 +457,26 @@ void catMove(int key, int x, int y)
 	for (int i = 0; i < 3; i++) newPosition[i] = position[i];
 	
 	/** calculate potential position and angles */
-	// if (key == GLUT_KEY_UP)
-	// {
-	// 	newPosition[0] += -0.10 * sin(rotation[0] * PI / 180.0);
-	// 	newPosition[2] += -0.10 * cos(rotation[0] * PI / 180.0);
-	// }
-	// else if (key == GLUT_KEY_DOWN)
-	// {
-	// 	newPosition[0] += 0.10 * sin(rotation[0] * PI / 180.0);
-	// 	newPosition[2] += 0.10 * cos(rotation[0] * PI / 180.0);
-	// }
-	// else if (key == GLUT_KEY_RIGHT)
-	// {
-	// 	rotation[0] -= 5.0;
-	// 	camera->UpdatePlayerAngle(rotation[0]);
-	// }
-	// else if (key == GLUT_KEY_LEFT)
-	// {
-	// 	rotation[0] += 5.0;
-	// 	camera->UpdatePlayerAngle(rotation[0]);
-	// }
+	if (key == UP)
+	{
+		newPosition[0] += -0.10 * sin(rotation[0] * PI / 180.0);
+		newPosition[2] += -0.10 * cos(rotation[0] * PI / 180.0);
+	}
+	else if (key == DOWN)
+	{
+		newPosition[0] += 0.10 * sin(rotation[0] * PI / 180.0);
+		newPosition[2] += 0.10 * cos(rotation[0] * PI / 180.0);
+	}
+	else if (key == RIGHT)
+	{
+		rotation[0] -= 5.0;
+		camera->UpdatePlayerAngle(rotation[0]);
+	}
+	else if (key == LEFT)
+	{
+		rotation[0] += 5.0;
+		camera->UpdatePlayerAngle(rotation[0]);
+	}
 
 	/* See whether or not the new calculated position is clear from other
 	   objects. That is, first it must not collide with the buildings,
@@ -545,6 +606,7 @@ void draw(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
+	glPushMatrix();
 	glClearColor(dayColor[0], dayColor[1], dayColor[2], 1.0);
 	camera->Render();
 	glPopMatrix();
@@ -552,7 +614,7 @@ void draw(void)
 
 void reshape(int width, int height)
 {
-	float worldAspect = 800.0 / 600.0;
+	float worldAspect = SCR_WIDTH / SCR_HEIGHT;
 	float windowAspect = width / height;
     int newWidth = 0.0;
 	int newHeight = 0.0;
@@ -678,12 +740,14 @@ int main(int argc, char **argv)
 	// glutSpecialFunc(catMove);
 
 	init();
+	// setupWorldObjects();
 	// glutMainLoop();
 
 	bool init = false;
 	while (!glfwWindowShouldClose(window))
 	{
 		processInput(window);
+		idle();
 		draw();
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
